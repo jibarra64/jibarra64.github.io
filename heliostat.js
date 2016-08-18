@@ -1,5 +1,5 @@
 	var device;
-	var cookieDomain = ".lightmanufacturingsystems.com";
+	var cookieDomain = "jibarra64.github.io";
 	var cookiePath = "/";
     var deviceAray;
 
@@ -512,3 +512,4 @@
             }
         }
     }
+
