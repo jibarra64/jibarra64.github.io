@@ -485,6 +485,7 @@
 		 else {
 			console.log("no valid token, login..");
 			return false;
+        }
         return token;
 	}
 	
@@ -512,4 +513,3 @@
             }
         }
     }
-
