@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../bootstrap/favicon.ico"> -->
+
+    <title>Heliostat Portal</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="pull-left" href="#"><img src="../images/lm_sm.png"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="devices.html">Dashboard</a></li>
+            <li><a href="#">Actions</a></li>
+            <li><a href="targets.html">Settings</a></li>
+            <li><a href="#" id="logout">Logout</a></li>
+          </ul>
+		  <!--
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+		  -->
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 main">
+          <h2 class="sub-header">Actions: <span id="targetName"></span></h2>
+          <div class="row placeholders">
+            <div class="col-xs-12 placeholder">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#">Basic</a></li>
+                    <li role="presentation"><a href="adv-actions.html">Advanced</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3 placeholder">
+                <h5 class="text-left">Status: <span id="status"></span></h5>
+                <h5 class="text-left">Time: <span id="time"></h5>
+                <h5 class="text-left">Target: <span id="activeTarget"></h5>
+            </div>
+            <div class="col-md-6 col-lg-3 placeholder">
+                <h5 class="text-left">Sun Altitude: <span id="sunPositionAlt"></h5>
+                <h5 class="text-left">Sun Azimuth: <span id="sunPositionAz"></h5>
+                <h5 class="text-left">Heliostat Altitude: <span id="helioPositionAlt"></h5>
+                <h5 class="text-left">Heliostat Azimuth: <span id="helioPositionAz"></h5>
+            </div>
+            <div class="col-md-6 col-lg-3 placeholder">
+                <p class="text-top">Set Target</p>
+                <div class="btn-group" role="group" aria-label="Set Target">
+                    <button type="button" class="btn btn-default target" id="setActiveTarget1" value="0">1</button>
+                    <button type="button" class="btn btn-default target" id="setActiveTarget2" value="1">2</button>
+                    <button type="button" class="btn btn-default target" id="setActiveTarget3" value="2">3</button>
+                    <button type="button" class="btn btn-default target" id="setActiveTarget4" value="3">4</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 placeholder">
+                <p class="text-top">Set Mode</p>
+                <div class="btn-group" role="group" aria-label="Set Target">
+                    <button type="button" class="btn btn-default setting" id="heliostat">Track</button>
+                    <button type="button" class="btn btn-default setting" id="calibrate">Calibrate</button>
+                    <button type="button" class="btn btn-default setting" id="safety">Safety</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 placeholder">
+                <button type="button" class="btn btn-default setting" id="resetPosition" data-toggle="button">
+                    Reset Position
+                </button>
+                <button type="button" class="btn btn-default setting" id="reboot" data-toggle="button">
+                    Reboot
+                </button>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../bootstrap/assets/js/vendor/holder.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- <script src="http://cdn.jsdelivr.net/sparkjs/0.5.9/spark.min.js"></script> -->
+    <script src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
+    <script src="../heliostat.js"></script>
+	<script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('logout').onclick = logout;
+            callbackOnLoggedIn(loginSuccess);
+            var settingElements = document.getElementsByClassName("setting");
+            for (var i = 0; i < settingElements.length; i++) {
+                settingElements[i].onclick = doAction;
+            }
+            var targetElements = document.getElementsByClassName("target");
+            for (var i = 0; i < targetElements.length; i++) {
+                targetElements[i].onclick = setActiveTarget;
+            }
+        };
+    
+        function loginSuccess() {
+            // update target name for selected context
+            document.getElementById("targetName").innerHTML = device.name;
+            
+            // register device status field for events
+            particle.getEventStream({   deviceId: device.id,
+                                        name: 'status',
+                                        auth: checkTokenExists()
+                                    }).then(function(stream) {
+                                          stream.on('event', function(data) {
+                                                    console.log("Status: " + JSON.stringify(data));
+                                                    var statusObject = JSON.parse(JSON.stringify(data));
+                                                    updateStatus(statusObject.data);
+                                                    });
+                                          });
+        }
+	</script>
+  </body>
+</html>

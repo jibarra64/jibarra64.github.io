@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../bootstrap/favicon.ico"> -->
+
+    <title>Heliostat Portal</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+          <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="pull-left" href="#"><img src="../images/lm_sm.png"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <!--
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="actions.html">Actions</a></li>
+            <li><a href="settings.html">Settings</a></li>
+             -->
+            <li><a href="#" id="logout">Logout</a></li>
+          </ul>
+		  <!--
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+		  -->
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!--
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="actions.html">Actions</a></li>
+            <li><a href="settings.html">Settings</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+          </ul>
+        </div>
+         -->
+        <!-- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> -->
+        <div class="col-xs-12 main" aria-labelledby="dLabel">
+            <div class="sub-header">
+                <h2>Devices
+                <div class="pull-right" style="padding: 0px 10px 0px 10px">
+                    <button type="button" class="btn btn-default target" id="displayDevicesButton" value="1">Hide Offline</button> 
+                </div>     
+                <div class="dropdown pull-right">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action <span class="caret"></span></button>
+                    <ul class="dropdown-menu multi-level" aria-labelledby="dropdownMenu1">
+                        <li><a href="javascript:batchCmd(['heliostat', 'setActiveTarget,0'])">Track - Target 1</a></li>
+                        <li><a href="javascript:batchCmd(['heliostat', 'setActiveTarget,1'])">Track - Target 2</a></li>
+                        <li><a href="javascript:batchCmd(['heliostat', 'setActiveTarget,2'])">Track - Target 3</a></li>
+                        <li><a href="javascript:batchCmd(['heliostat', 'setActiveTarget,3'])">Track - Target 4</a></li>
+                        <li><a href="javascript:batchCmd(['safety'])">Safety</a></li>
+                        <li><a href="javascript:batchCmd(['resetPosition'])">Reset Position</a></li>
+                        <!--<li><a href="javascript:batchCmd(['reboot'])">Reboot</a></li>-->
+                    </ul>
+                </div>
+                </h2>
+            </div>    
+            <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th><input type="checkbox"></th>      
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Mode</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="deviceTable">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../bootstrap/assets/js/vendor/holder.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- <script src="http://cdn.jsdelivr.net/sparkjs/0.5.9/spark.min.js"></script> -->
+    <script src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
+    <script src="../heliostat.js"></script>
+	<script type="text/javascript">
+        window.onload = function() {
+            deviceList();
+            document.getElementById('logout').onclick = logout;
+            var table = document.getElementsByTagName("table")[0];
+            var thead = table.getElementsByTagName("thead")[0];
+            var tbody = table.getElementsByTagName("tbody")[0];
+            var displayToggleButton = document.getElementById("displayDevicesButton");
+            displayToggleButton.onclick = function(e) {
+                if (displayToggleButton.value == '1') {
+                    displayToggleButton.value = 0;
+                    displayToggleButton.innerHTML = "Show Offline";
+                    showOfflineDevices(false);
+                }
+                else {
+                    displayToggleButton.value = 1;
+                    displayToggleButton.innerHTML = "Hide Offline";
+                    showOfflineDevices(true);
+                }
+            }
+            tbody.onclick = function (e) {
+                e = e || window.event;
+                var data = [];
+                var target = e.srcElement || e.target;
+                if (target.classList.contains("clickable")) {
+                    console.log(target);
+                    setDevice(target.parentNode.id);
+                }
+                console.log(target.type);
+            };
+            thead.onclick = function(e) {
+                var target = e.srcElement || e.target;
+                if (target.type == "checkbox") {
+                    if (target.checked) {
+                        toggleAllCheckboxesSelected(true);
+                    }
+                    else {
+                        toggleAllCheckboxesSelected(false);
+                    }
+                }
+            };
+        };
+	</script>
+  </body>
+</html>

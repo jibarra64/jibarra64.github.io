@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../bootstrap/favicon.ico"> -->
+
+    <title>Heliostat Portal</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="pull-left" href="#"><img src="../images/lm_sm.png"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="devices.html">Dashboard</a></li>
+            <li><a href="actions.html">Actions</a></li>
+            <li><a href="targets.html">Settings</a></li>
+            <li><a href="#" id="logout">Logout</a></li>
+          </ul>
+		  <!--
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+		  -->
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 main">
+          <h2 class="sub-header">Settings: <span id="targetName"></span></h2>
+		
+          <div class="row placeholders">
+            <div class="col-xs-12 placeholder">
+                <ul class="nav nav-tabs">
+                <li role="presentation"><a href="targets.html">Targets</a></li>
+                <li role="presentation"><a href="basic.html">Basic</a></li>
+                <li role="presentation" class="active"><a href="#">Advanced</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-md-6 placeholder">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">A Length</span>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Alt.</span>
+                        <input type="text" class="setting la-setting-alt" id="altAlen" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Az.</span>
+                        <input type="text" class="setting la-setting-az" id="azAlen" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 placeholder">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">B Length</span>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Alt.</span>
+                        <input type="text" class="setting la-setting-alt" id="altBlen" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Az.</span>
+                        <input type="text" class="setting la-setting-az" id="azBlen" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 placeholder">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Start Angle</span>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Alt.</span>
+                        <input type="text" class="setting la-setting-alt" id="altStartAngle" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Az.</span>
+                        <input type="text" class="setting la-setting-az" id="azStartAngle" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 placeholder">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Minimum Angle</span>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Alt.</span>
+                        <input type="text" class="setting" id="altMinAngle" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Az.</span>
+                        <input type="text" class="setting" id="azMinAngle" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 placeholder">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Maximum Angle</span>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Alt.</span>
+                        <input type="text" class="setting" id="altMaxAngle" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Az.</span>
+                        <input type="text" class="setting" id="azMaxAngle" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 placeholder">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Gear Ratio</span>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Alt.</span>
+                        <input type="text" class="setting" id="gearRatioAlt" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Az.</span>
+                        <input type="text" class="setting" id="gearRatioAz" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 placeholder">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Alt Drive Type</span>
+                    <div class="dropdown pull-left">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="driveMenuAlt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="driveMenuAlt">
+                            <li><a href="#">Linear Actuator</a></li>
+                            <li><a href="#">Wormgear</a></li>
+                        </ul>
+                        <input type="hidden" class="setting driveSetting" id="driveAlt">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 placeholder">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Az Drive Type</span>
+                    <div class="dropdown pull-left">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="driveMenuAz" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="driveMenuAz">
+                            <li><a href="#">Linear Actuator</a></li>
+                            <li><a href="#">Wormgear</a></li>
+                        </ul>
+                        <input type="hidden" class="setting driveSetting" id="driveAz">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 placeholder">
+                <div class="input-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Safety Timeout</span>
+                        <input type="text" class="setting" id="safetyTimeout" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 placeholder">
+                <div class="input-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Tracking Timeout</span>
+                        <input type="text" class="setting" id="trackingTimeout" class="form-control" aria-describedby="basic-addon1">
+                            </div>
+                </div>
+            </div>
+            <div class="col-xs-12 placeholder">
+                <div class="input-group">
+                    <div class="input-group">
+                        <button type="button" class="btn btn-default" id="saveButton" aria-label="Left Align">Save</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../bootstrap/assets/js/vendor/holder.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- <script src="http://cdn.jsdelivr.net/sparkjs/0.5.9/spark.min.js"></script> -->
+    <script src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
+    <script src="../heliostat.js"></script>
+	<script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('logout').onclick = logout;
+            callbackOnLoggedIn(loginSuccess);
+            
+            document.getElementById('saveButton').onclick = saveSettings;
+
+            $('.dropdown-menu a').on('click', function() {
+                                     var e = $(this).parent().parent().next()[0];
+                                     setDriveType(e, $(this).html());
+                                     console.log(e);
+                })
+            
+        };
+        function loginSuccess() {
+            getAdvancedSettings();
+            
+            // update target name for selected context
+            document.getElementById("targetName").innerHTML = device.name;
+        }
+	</script>
+  </body>
+</html>
