@@ -1,7 +1,7 @@
 	var device;
 	var cookieDomain = "jibarra64.github.io";
 	var cookiePath = "/";
-    var deviceAray;
+    var deviceArray;
 
     var particle = new Particle();
 
@@ -49,17 +49,26 @@
         window.location='actions.html';
 	}
 
+    function formatRSSI(rssi) {
+        var signalPercent = Math.round((Number(rssi) + 127)/127 * 100);
+        return (signalPercent + '%');
+    }
+
     function updateDeviceStatus(statusObject) {
         var id = statusObject.coreid;
         var id = document.getElementById(id);
         var status = id.getElementsByClassName('status');
+        var rssi = id.getElementsByClassName('rssi');
         var buf = statusObject.data.split(",");
         status[0].innerHTML = buf[0]; // status
+        rssi[0].innerHTML = formatRSSI(buf[7]); // RSSI
     }
 	
-    function setActiveTarget() {
-        console.log('set active target:' + this.value);
-        addFunctionToQueue(device.id, 'cmd', 'setActiveTarget' + ',' + this.value);
+    function setActiveTarget(evt) {
+        var target = evt.target.value;
+        //console.log('set active target:' + this.value);
+        console.log('set active target:' + target);
+        addFunctionToQueue(device.id, 'cmd', 'setActiveTarget' + ',' + target);
     }
 
     function doAction() {
@@ -358,6 +367,18 @@
 		//devList.innerHTML = '';
 		console.log(devices);
 		devTable.size = devices.length;
+        
+        particle.getEventStream({   deviceId: 'mine',
+                                    name: 'status',
+                                    auth: checkTokenExists()
+                                }).then(function(stream) {
+                                        stream.on('event', function(data) {
+                                            console.log("Status: " + JSON.stringify(data));
+                                            var statusObject = JSON.parse(JSON.stringify(data));
+                                            updateDeviceStatus(statusObject);
+                                        });
+                                });
+        
 		for (var i = 0; i < devices.length; i++) {
             var id = devices[i].id;
             var state = devices[i].connected ? 'online' : 'offline';
@@ -366,29 +387,46 @@
               <td class=clickable>" + devices[i].name + "</td> \
 			  <td>" + state + "</td> \
 			  <td class='status'></td> \
+			  <td class='rssi'></td> \
 			  <td></td> \
-			  <td></td> \
-			</tr>"; 
- 			if (devices[i].connected) {
-                particle.getEventStream({   deviceId: devices[i].id,
-                                            name: 'status',
-                                            auth: checkTokenExists()
-                                        }).then(function(stream) {
-                                            stream.on('event', function(data) {
-                                                console.log("Status: " + JSON.stringify(data));
-                                                var statusObject = JSON.parse(JSON.stringify(data));
-                                                updateDeviceStatus(statusObject);
-                                            });
-                                        });
-			}
+			</tr>";
 		}
 	}
+
+    function updateTargetControls(statusObject) {
+        console.log("updateTargetControls");
+        var buf = statusObject.data.split(",");
+        var targetIndex = buf[2]; // target
+        var targetElement = document.getElementById('target' + targetIndex);
+        targetElement.innerHTML = " \
+         <div class='btn-group-vertical'> \
+             <button type='button' class='btn btn-primary'>^</button> \
+             <div class='btn-group-horizontal'> \
+                 <button type='button' class='btn btn-primary'><</button> \
+                 <button type='button' class='btn btn-primary'>></button> \
+             </div> \
+             <button type='button' class='btn btn-primary'>V</button> \
+         </div>";
+    }
+
+    function showTargetControls() {
+        particle.getEventStream({   deviceId: device.id,
+                                    name: 'status',
+                                    auth: checkTokenExists()
+                                    }).then(function(stream) {
+                                            stream.on('event', function(data) {
+                                                      console.log("Status: " + JSON.stringify(data));
+                                                      var statusObject = JSON.parse(JSON.stringify(data));
+                                                      updateTargetControls(statusObject);
+                                                      });
+                                            });
+    }
 
     function batchCmd(cmds) {
         console.log("batch cmds: " + cmds.length);
         var inputs = document.getElementsByTagName("input");
         var checked = [];
-        for (var i = 0; i < inputs.length; i++) {
+        for (var i = 1; i < inputs.length; i++) {
             if (inputs[i].type == "checkbox") {
                 if (inputs[i].checked) {
                     checked.push(inputs[i]);
@@ -485,8 +523,7 @@
 		 else {
 			console.log("no valid token, login..");
 			return false;
-        }
-        return token;
+		 }
 	}
 	
 	function getCookie(cname) {

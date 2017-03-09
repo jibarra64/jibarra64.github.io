@@ -85,9 +85,9 @@
                 <li role="presentation"><a href="advanced.html">Advanced</a></li>
                 </ul>
             </div>
-            <div class="col-xs-12 col-sm-6 col-lg-4 placeholder">
+            <div class="col-xs-12 placeholder"><!-- col-sm-6 col-lg-4 placeholder">-->
                 <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Target 1</span>
+                    <span class="input-group-addon" id="basic-addon1"><input type="radio" value="0" class="targetSelect">&nbsp;&nbsp;Target 1</span>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Alt.</span>
                         <input type="text" class="setting" id="targetal0" class="form-control" aria-describedby="basic-addon1">
@@ -95,12 +95,23 @@
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Az.</span>
                         <input type="text" class="setting" id="targetaz0" class="form-control" aria-describedby="basic-addon1">
-                            </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-lg-4 placeholder">
+            <div class="col-xs-12 placeholder text-left" id="target0" style="display: none">
+                Adjust Target 1
                 <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Target 2</span>
+                    <span class="input-group-addon" id="basic-addon1">Alt.</span>
+                    <input type="text" class="adjust" id="adjustalt0" value="0.0" class="form-control" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Az.</span>
+                    <input type="text" class="adjust" id="adjustaz0" value="0.0" class="form-control" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="col-xs-12 placeholder"><!--col-sm-6 col-lg-4 placeholder">-->
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><input type="radio" value="1" class="targetSelect">&nbsp;&nbsp;Target 2</span>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Alt.</span>
                         <input type="text" class="setting" id="targetal1" class="form-control" aria-describedby="basic-addon1">
@@ -109,10 +120,22 @@
                         <span class="input-group-addon" id="basic-addon1">Az.</span>
                         <input type="text" class="setting" id="targetaz1" class="form-control" aria-describedby="basic-addon1">
                             </div>
-                </div>            </div>
-            <div class="col-xs-12 col-sm-6 col-lg-4 placeholder">
+                </div>
+            </div>
+            <div class="col-xs-12 placeholder text-left" id="target1" style="display: none">
+                Adjust Target 2
                 <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Target 3</span>
+                    <span class="input-group-addon" id="basic-addon1">Alt.</span>
+                    <input type="text" class="adjust" id="adjustalt1" value="0.0" class="form-control" aria-describedby="basic-addon1">
+                        </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Az.</span>
+                    <input type="text" class="adjust" id="adjustaz1" value="0.0" class="form-control" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="col-xs-12 placeholder"><!--col-sm-6 col-lg-4 placeholder">-->
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><input type="radio" value="2" class="targetSelect">&nbsp;&nbsp;Target 3</span>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Alt.</span>
                         <input type="text" class="setting" id="targetal2" class="form-control" aria-describedby="basic-addon1">
@@ -123,9 +146,20 @@
                             </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-lg-4 placeholder">
+            <div class="col-xs-12 placeholder text-left" id="target2" style="display: none">
+                Adjust Target 3
                 <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Target 4</span>
+                    <span class="input-group-addon" id="basic-addon1">Alt.</span>
+                    <input type="text" class="adjust" id="adjustalt2" value="0.0" class="form-control" aria-describedby="basic-addon1">
+                        </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Az.</span>
+                    <input type="text" class="adjust" id="adjustaz2" value="0.0" class="form-control" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="col-xs-12 placeholder"><!--col-sm-6 col-lg-4 placeholder">-->
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><input type="radio" value="3" class="targetSelect">&nbsp;&nbsp;Target 4</span>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Alt.</span>
                         <input type="text" class="setting" id="targetal3" class="form-control" aria-describedby="basic-addon1">
@@ -134,6 +168,17 @@
                         <span class="input-group-addon" id="basic-addon1">Az.</span>
                         <input type="text" class="setting" id="targetaz3" class="form-control" aria-describedby="basic-addon1">
                             </div>
+                </div>
+            </div>
+            <div class="col-xs-12 placeholder text-left" id="target3" style="display: none">
+                Adjust Target 4
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Alt.</span>
+                    <input type="text" class="adjust" id="adjustalt3" value="0.0" class="form-control" aria-describedby="basic-addon1">
+                        </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Az.</span>
+                    <input type="text" class="adjust" id="adjustaz3" value="0.0" class="form-control" aria-describedby="basic-addon1">
                 </div>
             </div>
             <div class="col-xs-12 placeholder">
@@ -161,17 +206,41 @@
     <script src="https://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
     <script src="../heliostat.js"></script>
 	<script type="text/javascript">
+        var $prevContent;
         window.onload = function() {
             document.getElementById('logout').onclick = logout;
             callbackOnLoggedIn(loginSuccess);
             
             document.getElementById('saveButton').onclick = saveSettings;
+            $(".targetSelect").click(updateRadios);
         };
         function loginSuccess() {
             getTargets();
             
             // update target name for selected context
             document.getElementById("targetName").innerHTML = device.name;
+        }
+        function updateRadios(evt) {
+            console.log(evt.target);
+            console.log(evt.target.value);
+            targetSelect = document.getElementsByClassName('targetSelect');
+            for (i = 0; i < targetSelect.length; i++) {
+                if (targetSelect[i] == evt.target) {
+                    continue;
+                }
+                targetSelect[i].checked = false;
+            }
+            setActiveTarget(evt);
+            $content = $("#target" + evt.target.value);
+            $content.slideToggle(500, function() {
+                                    // execute this after slideToggle is done
+                                 });
+            if ($prevContent) {
+                $prevContent.slideToggle(500, function() {
+                                     // execute this after slideToggle is done
+                                     });
+            }
+            $prevContent = $content;
         }
 	</script>
   </body>
