@@ -102,7 +102,7 @@
                 Adjust Target 1
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Alt.</span>
-                    <input type="text" class="adjust" id="adjustalt0" value="0.0" class="form-control" aria-describedby="basic-addon1">
+                    <input type="text" class="adjust" id="adjustal0" value="0.0" class="form-control" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Az.</span>
@@ -126,7 +126,7 @@
                 Adjust Target 2
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Alt.</span>
-                    <input type="text" class="adjust" id="adjustalt1" value="0.0" class="form-control" aria-describedby="basic-addon1">
+                    <input type="text" class="adjust" id="adjustal1" value="0.0" class="form-control" aria-describedby="basic-addon1">
                         </div>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Az.</span>
@@ -150,7 +150,7 @@
                 Adjust Target 3
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Alt.</span>
-                    <input type="text" class="adjust" id="adjustalt2" value="0.0" class="form-control" aria-describedby="basic-addon1">
+                    <input type="text" class="adjust" id="adjustal2" value="0.0" class="form-control" aria-describedby="basic-addon1">
                         </div>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Az.</span>
@@ -174,7 +174,7 @@
                 Adjust Target 4
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Alt.</span>
-                    <input type="text" class="adjust" id="adjustalt3" value="0.0" class="form-control" aria-describedby="basic-addon1">
+                    <input type="text" class="adjust" id="adjustal3" value="0.0" class="form-control" aria-describedby="basic-addon1">
                         </div>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Az.</span>
@@ -211,6 +211,13 @@
             document.getElementById('logout').onclick = logout;
             callbackOnLoggedIn(loginSuccess);
             
+            $(".adjust").change(function() {
+                                var temp = $(this)[0].id;
+                                var el = $("#target" + temp.slice(-3))[0];
+                                console.log(el);
+                                el.value = parseFloat(el.value) + parseFloat($(this)[0].value);
+                                console.log(el.value);
+                               });
             document.getElementById('saveButton').onclick = saveSettings;
             $(".targetSelect").click(updateRadios);
         };
