@@ -76,7 +76,56 @@
         <!-- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> -->
         <div class="col-xs-12 main">
             <h2 class="sub-header">Settings: <span id="targetName"></span></h2>
-		
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Directional Target Adjust</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div align="center">
+                                <button type="button" id="up" class="btn btn-primary adjust">
+                                    <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div align="center">
+                                <button type="button" id="left" class="btn btn-primary adjust">
+                                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                                </button>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" id="right" class="btn btn-primary adjust">
+                                    <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div align="center">
+                                <button type="button" id="down" class="btn btn-primary adjust">
+                                    <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div align="right">
+                            <span>Increment (degrees)</span>
+                            <select id="increment">
+                                <option value="0.1">0.1</option>
+                                <option value="0.5">0.5</option>
+                                <option value="1.0">1.0</option>
+                                <option value="5.0">5.0</option>
+                            </select>
+                            &nbsp;
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary save" data-dismiss="modal">Save</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
           <div class="row placeholders">
             <div class="col-xs-12 placeholder">
                 <ul class="nav nav-tabs">
@@ -99,6 +148,7 @@
                 </div>
             </div>
             <div class="col-xs-12 placeholder text-left" id="target0" style="display: none">
+                <!--
                 Adjust Target 1
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Alt.</span>
@@ -108,6 +158,11 @@
                     <span class="input-group-addon" id="basic-addon1">Az.</span>
                     <input type="text" class="adjust" id="adjustaz0" value="0.0" class="form-control" aria-describedby="basic-addon1">
                 </div>
+                 -->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Directional Target Adjust
+                </button>
             </div>
             <div class="col-xs-12 placeholder"><!--col-sm-6 col-lg-4 placeholder">-->
                 <div class="input-group">
@@ -123,6 +178,7 @@
                 </div>
             </div>
             <div class="col-xs-12 placeholder text-left" id="target1" style="display: none">
+                <!--
                 Adjust Target 2
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Alt.</span>
@@ -132,6 +188,10 @@
                     <span class="input-group-addon" id="basic-addon1">Az.</span>
                     <input type="text" class="adjust" id="adjustaz1" value="0.0" class="form-control" aria-describedby="basic-addon1">
                 </div>
+                 -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Directional Target Adjust
+                </button>
             </div>
             <div class="col-xs-12 placeholder"><!--col-sm-6 col-lg-4 placeholder">-->
                 <div class="input-group">
@@ -147,6 +207,7 @@
                 </div>
             </div>
             <div class="col-xs-12 placeholder text-left" id="target2" style="display: none">
+                <!--
                 Adjust Target 3
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Alt.</span>
@@ -156,6 +217,10 @@
                     <span class="input-group-addon" id="basic-addon1">Az.</span>
                     <input type="text" class="adjust" id="adjustaz2" value="0.0" class="form-control" aria-describedby="basic-addon1">
                 </div>
+                 -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Directional Target Adjust
+                </button>
             </div>
             <div class="col-xs-12 placeholder"><!--col-sm-6 col-lg-4 placeholder">-->
                 <div class="input-group">
@@ -171,6 +236,7 @@
                 </div>
             </div>
             <div class="col-xs-12 placeholder text-left" id="target3" style="display: none">
+                <!--
                 Adjust Target 4
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Alt.</span>
@@ -180,11 +246,15 @@
                     <span class="input-group-addon" id="basic-addon1">Az.</span>
                     <input type="text" class="adjust" id="adjustaz3" value="0.0" class="form-control" aria-describedby="basic-addon1">
                 </div>
+                 -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Directional Target Adjust
+                </button>
             </div>
             <div class="col-xs-12 placeholder">
                 <div class="input-group">
                     <div class="input-group">
-                        <button type="button" class="btn btn-default" id="saveButton" aria-label="Left Align">Save</button>
+                        <button type="button" class="btn btn-default save" id="saveButton" aria-label="Left Align">Save</button>
                     </div>
                 </div>
             </div>
@@ -211,6 +281,7 @@
             document.getElementById('logout').onclick = logout;
             callbackOnLoggedIn(loginSuccess);
             
+            /*
             $(".adjust").change(function() {
                                 var temp = $(this)[0].id;
                                 var el = $("#target" + temp.slice(-3))[0];
@@ -218,7 +289,10 @@
                                 el.value = parseFloat(el.value) + parseFloat($(this)[0].value);
                                 console.log(el.value);
                                });
-            document.getElementById('saveButton').onclick = saveSettings;
+             */
+            $(".adjust").on('click', adjustTargetPosition);
+            $(".save").on('click', saveSettings);
+            //document.getElementById('saveButton').onclick = saveSettings;
             $(".targetSelect").click(updateRadios);
         };
         function loginSuccess() {

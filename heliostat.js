@@ -550,3 +550,29 @@
             }
         }
     }
+
+    function adjustTargetPosition(evt) {
+        console.log("adjust target position");
+        var increment = $('#increment').val();
+        var activeTarget = $('.targetSelect:checked').val();
+        var altitude = $('#targetal' + activeTarget).val();
+        var azimuth = $('#targetaz' + activeTarget).val();
+        console.log("current alt: " + altitude + "current az: " + azimuth);
+        if (evt.currentTarget.id == "up") {
+            altitude = parseFloat(altitude) + parseFloat(increment);
+        }
+        else if (event.currentTarget.id == "down") {
+            altitude = parseFloat(altitude) - parseFloat(increment);
+        }
+        else if (event.currentTarget.id == "left") {
+            azimuth = parseFloat(azimuth) - parseFloat(increment);
+        }
+        else if (event.currentTarget.id == "right") {
+            azimuth = parseFloat(azimuth) + parseFloat(increment);
+        }
+        console.log("increment: " + increment);
+        console.log("new alt: " + altitude + "new az: " + azimuth);
+        $('#targetal' + activeTarget).val(altitude);
+        $('#targetaz' + activeTarget).val(azimuth);
+        addFunctionToQueue(device.id, 'cmd', 'testTargetPos' + ',' + altitude + ',' + azimuth);
+    }
