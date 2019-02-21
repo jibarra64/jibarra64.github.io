@@ -17,9 +17,6 @@ var serial = {};
       { 'vendorId': 0x2341, 'productId': 0x804e },
       { 'vendorId': 0x2341, 'productId': 0x804f },
       { 'vendorId': 0x2341, 'productId': 0x8050 },
-      { 'vendorId': 3368,   'productId': 516    },
-      { 'vendorId': 61525,  'productId': 38912  },
-      { 'vendorId': 0x0483, 'productId': 0x5740 },
     ];
     return navigator.usb.requestDevice({ 'filters': filters }).then(
       device => new serial.Port(device)
@@ -28,12 +25,9 @@ var serial = {};
 
   serial.Port = function(device) {
     this.device_ = device;
-    this.interfaceNumber_ = 1;  // original interface number of WebUSB Arduino demo
-    this.endpointIn_ = 3;       // original in endpoint ID of WebUSB Arduino demo
-    this.endpointOut_ = 3;      // original out endpoint ID of WebUSB Arduino demo
-    //this.interfaceNumber_ = 1;
-    //this.endpointIn_ = 4;
-    //this.endpointOut_ = 4;
+    this.interfaceNumber_ = 2;  // original interface number of WebUSB Arduino demo
+    this.endpointIn_ = 5;       // original in endpoint ID of WebUSB Arduino demo
+    this.endpointOut_ = 4;      // original out endpoint ID of WebUSB Arduino demo
   };
 
   serial.Port.prototype.connect = function() {
@@ -78,13 +72,7 @@ var serial = {};
             'request': 0x22,
             'value': 0x01,
             'index': this.interfaceNumber_}))
-       .then(() => this.device_.controlTransferOut({
-            'requestType': 'class',
-            'recipient': 'interface',
-            'request': 0x22,
-            'value': 0x3,
-            'index': 1}))
-          .then(() => {
+        .then(() => {
           readLoop();
         });
   };
