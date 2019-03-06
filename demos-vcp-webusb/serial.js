@@ -83,7 +83,7 @@ var serial = {};
             'recipient': 'interface',
             'request': 0x22,
             'value': 0x3,
-            'index': 1}))
+            'index': this.interfaceNumber_}))
           .then(() => {
           readLoop();
         });
