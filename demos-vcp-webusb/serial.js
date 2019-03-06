@@ -78,12 +78,12 @@ var serial = {};
             'request': 0x22,
             'value': 0x01,
             'index': this.interfaceNumber_}))
-       .then(() => this.device_.controlTransferOut({
+       /*.then(() => this.device_.controlTransferOut({
             'requestType': 'class',
             'recipient': 'interface',
             'request': 0x22,
             'value': 0x3,
-            'index': this.interfaceNumber_}))
+            'index': this.interfaceNumber_}))*/
           .then(() => {
           readLoop();
         });
